@@ -4,10 +4,11 @@ from com.bank.ingestion.ingest_csv_table import ingest_to_table
 
 def main():
     spark = spark_setup()
-    file_name = "../../../../../../postgre/lloyds_current_account.csv"
+    file_name = ""
     target_table = "\"BankData\".transaction"
-    bank_code = 1
+    bank_code = 5
     if bank_code == 1:
+        file_name = "../../../../../../postgre/lloyds_current_account.csv"
         ingest_to_table(spark, file_name, target_table, "LLoydsCA")
     elif bank_code == 2:
         ingest_to_table(spark, file_name, target_table, "LLoydsCC")
@@ -16,6 +17,7 @@ def main():
     elif bank_code == 4:
         ingest_to_table(spark, file_name, target_table, "HalCC")
     elif bank_code == 5:
+        file_name = "../../../../../../postgre/amex_credit_card.csv"
         ingest_to_table(spark, file_name, target_table, "AmexCC")
     else:
         print("Incorrect Option")
